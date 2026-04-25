@@ -3,6 +3,7 @@ import MainLayout from '../MainLayout/MainLayout';
 import Home from '../Pages/Home';
 import Items from '../Pages/Items';
 import About from '../Pages/About';
+import ItemDetails from '../Pages/ItemDetails';
 
 const routes = createBrowserRouter([
     {
@@ -17,6 +18,11 @@ const routes = createBrowserRouter([
                 path: "/items",
                 element: <Items></Items>,
                 loader: () => fetch("https://www.themealdb.com/api/json/v1/1/search.php?f=a")
+            },
+            {
+                path: "/item/:itemId",
+                element: <ItemDetails></ItemDetails>,
+                loader: ({params}) => fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${params.itemId}`)
             },
             {
                 path: "/about",
